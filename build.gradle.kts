@@ -1,12 +1,12 @@
 plugins {
     id("java")
-    id("dev.architectury.loom") version("1.7-SNAPSHOT")
+    id("dev.architectury.loom") version("1.11-SNAPSHOT")
     id("architectury-plugin") version("3.4-SNAPSHOT")
-    kotlin("jvm") version "1.9.23"
+    kotlin("jvm") version "2.2.20"
 }
 
 group = "com.berber.intuition"
-version = "0.5.0"
+version = "0.6.0"
 
 architectury {
     platformSetupLoomIde()
@@ -34,14 +34,14 @@ repositories {
 dependencies {
     minecraft("net.minecraft:minecraft:1.21.1")
     mappings(loom.officialMojangMappings())
-    modImplementation("net.fabricmc:fabric-loader:0.16.5")
+    modImplementation("net.fabricmc:fabric-loader:0.17.2")
 
-    modRuntimeOnly("net.fabricmc.fabric-api:fabric-api:0.104.0+1.21.1")
-    modImplementation(fabricApi.module("fabric-command-api-v2", "0.104.0+1.21.1"))
+    modRuntimeOnly("net.fabricmc.fabric-api:fabric-api:0.116.6+1.21.1")
+    modImplementation(fabricApi.module("fabric-command-api-v2", "0.116.6+1.21.1"))
 
-    modImplementation("net.fabricmc:fabric-language-kotlin:1.12.3+kotlin.2.0.21")
-    modImplementation("com.cobblemon:fabric:1.6.1+1.21.1-SNAPSHOT")
-    modImplementation("libs:berbersbrews-0.5.0")
+    modImplementation("net.fabricmc:fabric-language-kotlin:1.13.6+kotlin.2.2.20")
+    modImplementation("com.cobblemon:fabric:1.7.0+1.21.1-SNAPSHOT")
+    modImplementation("libs:berbersbrews-0.6.0")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.0")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.0")

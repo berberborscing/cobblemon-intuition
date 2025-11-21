@@ -1,7 +1,6 @@
 package com.berber.cobblemonintuition.fishing;
 
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
-import kotlin.jvm.internal.Ref;
 import net.minecraft.world.item.ItemStack;
 
 import java.util.List;

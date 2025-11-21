@@ -3,7 +3,7 @@
   "id": "cobblemonintuition",
   "version": "${version}",
   "name": "Cobblemon: Intuition",
-  "description": "A mod that makes Intuition Potions from Berber's Brews 0.5.0+ compatible with Cobblemon 1.6.1+ for Fabric.",
+  "description": "A mod that makes Intuition Potions from Berber's Brews 0.6.0+ compatible with Cobblemon 1.7+ for Fabric.",
   "authors": [
     "MintyBerber"
   ],
@@ -20,7 +20,7 @@
   ],
   "depends": {
     "minecraft": "1.21.1",
-    "cobblemon": ">=1.6.1",
-    "berbersbrews": ">=0.5.0"
+    "cobblemon": ">=1.7.0",
+    "berbersbrews": ">=0.6.0"
   }
 }
