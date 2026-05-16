@@ -7,7 +7,6 @@ import com.cobblemon.mod.common.CobblemonItems;
 import com.cobblemon.mod.common.ModAPI;
 import com.cobblemon.mod.common.api.Priority;
 import com.cobblemon.mod.common.api.events.CobblemonEvents;
-import com.cobblemon.mod.common.api.events.fishing.BaitSetEvent;
 import com.cobblemon.mod.common.api.events.fishing.BobberSpawnPokemonEvent;
 import com.cobblemon.mod.common.api.fishing.SpawnBait;
 import com.cobblemon.mod.common.api.fishing.SpawnBaitEffects;
@@ -112,16 +111,6 @@ public abstract class PokeRodMixin extends FishingHook implements EarlyCobblemon
         return null;
     });
 
-    //Prevents an exploit where players could pregenerate a powerful outcome and then remove bait so bait wouldn't be consumed
-    ObservableSubscription<BaitSetEvent> baitUpdate = CobblemonEvents.BAIT_SET.subscribe(Priority.NORMAL, event -> {
-        //Remove this code once Cobblemon fixes this
-        if(!level().isClientSide()) {
-            cleanUp();
-            postCleanUp();
-            kill();
-        }
-    });
-
     @Override
     public boolean cobblemon_intuition$hasEarlyItems() {
         return !earlyItems.isEmpty();
@@ -212,9 +201,16 @@ public abstract class PokeRodMixin extends FishingHook implements EarlyCobblemon
                         displayText = storage.cobblemon_intuition$getEarlyItems().get(i).getDisplayName().getString().substring(1, storage.cobblemon_intuition$getEarlyItems().get(i).getDisplayName().getString().length()-1);
                     }
                     if(cobblemon_intuition$hasEarlyPokemon()) {
+                        //If the Pokemon is shiny, show in gold text
                         if(cobblemon_intuition$getEarlyPokemon().getPokemon().getShiny()) {
                             this.setCustomName(Component.literal(displayText).setStyle(Style.EMPTY.withColor(16514837)));
-                        } else {
+                        }
+                        //If the Pokemon is alpha, show in red text
+                        else if(cobblemon_intuition$getEarlyPokemon().getPokemon().isAlpha()) {
+                            this.setCustomName(Component.literal(displayText).setStyle(Style.EMPTY.withColor(16732754)));
+                        }
+                        //Otherwise, just show in normal white text
+                        else {
                             this.setCustomName(Component.literal(displayText));
                         }
                     } else {
@@ -414,7 +410,6 @@ public abstract class PokeRodMixin extends FishingHook implements EarlyCobblemon
     //Always clean up your event subscriptions to prevent memory leaks!
     @Unique
     private void cleanUp() {
-        baitUpdate.unsubscribe();
         subModify.unsubscribe();
     }
 

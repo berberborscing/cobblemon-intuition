@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "com.berber.intuition"
-version = "0.6.0"
+version = "0.7.0"
 
 architectury {
     platformSetupLoomIde()
@@ -40,11 +40,16 @@ dependencies {
     modImplementation(fabricApi.module("fabric-command-api-v2", "0.116.6+1.21.1"))
 
     modImplementation("net.fabricmc:fabric-language-kotlin:1.13.6+kotlin.2.2.20")
-    modImplementation("com.cobblemon:fabric:1.7.0+1.21.1-SNAPSHOT")
+    modImplementation("com.cobblemon:fabric:1.8.0+1.21.1-SNAPSHOT")
     modImplementation("libs:berbersbrews-0.6.0")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.0")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.0")
+
+    //Graal imports allow the testing environment to run
+    runtimeOnly("org.graalvm.polyglot:polyglot:23.1.2")
+    runtimeOnly("org.graalvm.js:js-language:23.1.2")
+    runtimeOnly("org.graalvm.truffle:truffle-runtime:23.1.2")
 }
 
 tasks.getByName<Test>("test") {
